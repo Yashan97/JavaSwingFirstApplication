@@ -2,11 +2,11 @@ package customer;
 
 import javax.swing.JOptionPane;
 
-public class SearchForm extends javax.swing.JFrame {
-    private StudentCollection studentCollection;
+public class UpdateForm extends javax.swing.JFrame {
+    private StudentCollection studentCollection ;
    
   
-    public SearchForm(StudentCollection studentCollection) {
+    public UpdateForm(StudentCollection studentCollection) {
         initComponents();
         setLocationRelativeTo(null);
         this.studentCollection = studentCollection;
@@ -29,6 +29,7 @@ public class SearchForm extends javax.swing.JFrame {
         txtprf = new javax.swing.JTextField();
         btnCancel = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,7 +38,7 @@ public class SearchForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SEARCH STUDENT FORM");
+        jLabel1.setText("UPDATE STUDENT FORM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,6 +88,13 @@ public class SearchForm extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setText("UPDATE");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,6 +105,8 @@ public class SearchForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -139,7 +149,8 @@ public class SearchForm extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(96, 96, 96))
         );
 
@@ -169,9 +180,27 @@ public class SearchForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        String id = txtId.getText();
+        String name= txtName.getText();
+        int prf = Integer.parseInt(txtprf.getText());
+        int dbms = Integer.parseInt(txtdbms.getText());
+        
+        Student student = new Student(id, name, prf, dbms);
+        boolean isUpdate =studentCollection.updateStudentForm(student);
+        if (isUpdate) {
+            JOptionPane.showMessageDialog(this, "Update Success");
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Update Fail");
+        
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

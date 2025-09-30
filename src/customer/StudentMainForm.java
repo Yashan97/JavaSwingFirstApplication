@@ -1,10 +1,12 @@
 
 package customer;
 public class StudentMainForm extends javax.swing.JFrame {
- private Student [] studentArray = new Student[0];
+ private StudentCollection studentCollection;
  
     public StudentMainForm() {
         initComponents();
+        setLocationRelativeTo(null);
+        studentCollection = new StudentCollection();
     }
 
    
@@ -14,6 +16,7 @@ public class StudentMainForm extends javax.swing.JFrame {
 
         btnSearchStudentForm = new javax.swing.JButton();
         btnAddStudentForm = new javax.swing.JButton();
+        btnUpdateForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,63 +34,52 @@ public class StudentMainForm extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateForm.setText("UPDATE STUDENT");
+        btnUpdateForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateFormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(btnSearchStudentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(216, 216, 216)
-                    .addComponent(btnAddStudentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(400, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdateForm, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchStudentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddStudentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(98, 98, 98)
+                .addComponent(btnAddStudentForm)
+                .addGap(18, 18, 18)
                 .addComponent(btnSearchStudentForm)
-                .addContainerGap(298, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(101, 101, 101)
-                    .addComponent(btnAddStudentForm)
-                    .addContainerGap(359, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdateForm)
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public boolean  addstudent(Student student){
-        extendArrays();
-        studentArray[studentArray.length-1]=student;
-        return true;
     
-    }
-    public Student searchId(String id){
-            for (Student student : studentArray) {
-                if (student.getId().equalsIgnoreCase(id)) {
-                    return student;
-                }
-        }
-            return null;
-    }
     private void btnAddStudentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentFormActionPerformed
-       new AddNewStudent(this).setVisible(true);
+       new AddNewStudent(studentCollection).setVisible(true);
     }//GEN-LAST:event_btnAddStudentFormActionPerformed
 
     private void btnSearchStudentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentFormActionPerformed
-       new SearchForm(this).setVisible(true);
+       new SearchForm(studentCollection).setVisible(true);
     }//GEN-LAST:event_btnSearchStudentFormActionPerformed
-     private void extendArrays(){
-        Student [] temp = new Student[studentArray.length+1];
-        for (int i = 0; i <studentArray.length; i++) {
-            temp[i] = studentArray[i];
-        }
-        studentArray = temp;
-    }
+
+    private void btnUpdateFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFormActionPerformed
+       new UpdateForm(studentCollection).setVisible(true);
+    }//GEN-LAST:event_btnUpdateFormActionPerformed
+    
     
     public static void main(String args[]) {
        
@@ -101,5 +93,6 @@ public class StudentMainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddStudentForm;
     private javax.swing.JButton btnSearchStudentForm;
+    private javax.swing.JButton btnUpdateForm;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,12 @@ import javax.swing.JOptionPane;
 
 public class AddNewStudent extends javax.swing.JFrame {
 
-    private StudentMainForm studentMainForm;
+    private StudentCollection studentCollection;
   
-    public AddNewStudent(StudentMainForm studentMainForm) {
+    public AddNewStudent(StudentCollection studentCollection) {
         initComponents();
-        this.studentMainForm = studentMainForm;
+        setLocationRelativeTo(null);
+        this.studentCollection = studentCollection;
     }
 
     
@@ -160,7 +161,7 @@ public class AddNewStudent extends javax.swing.JFrame {
        int dbms = Integer.parseInt(txtdbms.getText());
        
        Student s1 = new Student(id, name, prf, dbms);
-       boolean isadd =  studentMainForm.addstudent(s1);
+       boolean isadd = studentCollection.addstudent(s1);
         if (isadd) {
             JOptionPane.showMessageDialog(this, "Added Success");
         }
